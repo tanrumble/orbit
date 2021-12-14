@@ -8,6 +8,7 @@ var unitZ = 0;
 var acceleration = 0;
 var velocity = 0;
 var momentum = 0; //keep the orbit stabil
+var mDif = 0; //check momentum difference
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -64,7 +65,8 @@ function animate() {
             }
         
         //orbiting
-        velocity = momentum / diagonal;
+        mdif = velocity * diagonal - momentum;
+        console.log(mdif);
         sphereMoon.position.y += unitX * velocity;
         sphereMoon.position.x -= unitY * velocity;
 
