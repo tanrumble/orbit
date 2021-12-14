@@ -42,7 +42,7 @@ diagonal = Math.sqrt(sphereMoon.position.x ** 2 + sphereMoon.position.y ** 2 + s
 velocity = Math.sqrt(G * EM / diagonal);
 
 //momentum
-momentum = velocity / diagonal;
+momentum = velocity * diagonal;
 
 function animate() {
     //physic
@@ -64,7 +64,7 @@ function animate() {
             }
         
         //orbiting
-        velocity = momentum * diagonal;
+        velocity = momentum / diagonal;
         sphereMoon.position.y += unitX * velocity;
         sphereMoon.position.x -= unitY * velocity;
 
