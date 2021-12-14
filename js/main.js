@@ -67,6 +67,10 @@ function animate() {
         //orbiting
         velocity = momentum / diagonal;
         mdif = velocity * diagonal - momentum;
+        
+        //fix error
+        velocity = velocity + (-mdif / diagonal);
+        mdif = velocity * diagonal - momentum;
         console.log(mdif);
         sphereMoon.position.y += unitX * velocity;
         sphereMoon.position.x -= unitY * velocity;
