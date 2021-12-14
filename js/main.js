@@ -7,6 +7,7 @@ var unitY = 0;
 var unitZ = 0;
 var acceleration = 0;
 var velocity = 0;
+var momentum = 0; //keep the orbit stabil
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -36,6 +37,13 @@ sphereMoon.position.x = 5;
 //orbit camera
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+//orbit velocity
+diagonal = Math.sqrt(sphereMoon.position.x ** 2 + sphereMoon.position.y ** 2 + sphereMoon.position.z ** 2 );
+velocity = Math.sqrt(G * EM / diagonal);
+
+//momentum
+momentum = velocity / diagonal;
+
 function animate() {
     //physic
         //vector unit
@@ -56,7 +64,7 @@ function animate() {
             }
         
         //orbiting
-        velocity = Math.sqrt(G * EM / diagonal);
+        velocity = momentum * diagonal;
         sphereMoon.position.y += unitX * velocity;
         sphereMoon.position.x -= unitY * velocity;
 
